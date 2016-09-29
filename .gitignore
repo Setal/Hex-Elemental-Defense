@@ -214,3 +214,15 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+
+
+###################
+## Unity generated 
+###################
+
+HexElementalDefense/Temp/
+HexElementalDefense/Obj/
+HexElementalDefense/UnityGenerated/
+HexElementalDefense/Library/
+HexElementalDefense/Assets/AssetStoreTools*
