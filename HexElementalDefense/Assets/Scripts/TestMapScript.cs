@@ -10,28 +10,32 @@ namespace Assets.Scripts
 {
     class TestMapScript : MonoBehaviour
     {
-        public GameObject hex;
-        public Map map;
+        private GameObject _hex;
+        private GameObject _hexPath;
+        private Map _map;
 
         // Use this for initialization
         void Start()
         {
-            map = new Map(new TestMapBuilder());
+            _hex = (GameObject)Resources.Load("Hex");
+            _hexPath = (GameObject)Resources.Load("HexPath");
 
-            for (int i0 = 0; i0 < map.GetLength(0); i0++)
-                for (int i1 = 0; i1 < map.GetLength(1); i1++)
+            _map = new Map(new TestMapBuilder());
+
+            for (int i0 = 0; i0 < _map.GetLength(0); i0++)
+                for (int i1 = 0; i1 < _map.GetLength(1); i1++)
                 {
+                    GameObject localHex = _hex;
                     var zDiff = 1.5f;
                     var xDiff = 0.866025f / 2f;
-                    var tile = map[i0, i1];
-                    if (i0 % 2 == 0)
+                    var tile = _map[i0, i1];
+
+                    if (tile is PathTile)
                     {
-                        Instantiate(hex, new Vector3(i0 * xDiff, 0, i1 * zDiff), Quaternion.identity);
+                        localHex = _hexPath;
                     }
-                    else
-                    {
-                        Instantiate(hex, new Vector3(i0 * xDiff, 0, i1 * zDiff + zDiff * 0.5f), Quaternion.identity);
-                    }
+
+                    Instantiate(localHex, new Vector3(i0 * xDiff, 0, i1 * zDiff + ((i0 % 2 == 0) ? 0f : zDiff * 0.5f)), Quaternion.identity);
                 }
         }
 
