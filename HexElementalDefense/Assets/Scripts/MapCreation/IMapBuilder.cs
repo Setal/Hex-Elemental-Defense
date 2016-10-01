@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Assets.Scripts.MapObjects;
 
-namespace Assets.MapCreation
+namespace Assets.Scripts.MapCreation
 {
     /// <summary>
     /// Rozhrani pro vytvareni map

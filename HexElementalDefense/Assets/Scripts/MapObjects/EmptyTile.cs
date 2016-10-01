@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Assets.MapObjects
+﻿namespace Assets.Scripts.MapObjects
 {
     /// <summary>
     /// Reprezentuje prazdny prvek pole, na kterem lze zbudovat vez

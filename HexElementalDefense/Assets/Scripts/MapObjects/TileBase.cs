@@ -1,18 +1,22 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-/// <summary>
-/// Reprezentuje bazovy prvek pole
-/// </summary>
-public abstract class TileBase : MonoBehaviour {
+namespace Assets.Scripts.MapObjects
+{
+    /// <summary>
+    /// Reprezentuje bazovy prvek pole
+    /// </summary>
+    public abstract class TileBase {
 
-	// Use this for initialization
-	public virtual void Start () {
+        public GameObject Hex { get; set; }
+
+        // Use this for initialization
+        public virtual void Start () {
 	
-	}
+        }
 
-    // Update is called once per frame
-    public virtual void Update () {
+        // Update is called once per frame
+        public virtual void Update () {
 	
-	}
+        }
+    }
 }

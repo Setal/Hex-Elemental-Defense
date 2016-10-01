@@ -1,11 +1,11 @@
-﻿using UnityEngine;
-using System.Collections;
-using Assets.MapCreation;
+﻿using Assets.Scripts.MapCreation;
+using UnityEngine;
 
-namespace Assets.MapObjects
+namespace Assets.Scripts.MapObjects
 {
 
-    public class Map : MonoBehaviour {
+    public class Map
+    {
 
         public Map(IMapBuilder mapBuilder)
         {
@@ -14,28 +14,28 @@ namespace Assets.MapObjects
 
         private TileBase[,] _mapArray;
 
-        // Use this for initialization
-        void Start() {
-
-    }
-
-        // Update is called once per frame
-        void Update() {
-            //TODO vykreslovani mapy
-        }
-
         /// <summary>
-        /// 
+        /// Vraci pole na zadanych souradnicich
         /// </summary>
         /// <param name="x">Souradnice X</param>
         /// <param name="y">Souradnice Y</param>
-        /// <returns>Vraci pole na zadanych souradnicich</returns>
+        /// <returns>Pole na zadanych souradnicich</returns>
         public TileBase this[int x, int y]
         {
             get
             {
                 return _mapArray[x, y];
             }
+        }
+
+        /// <summary>
+        /// Vraci Vraci pocet prvku mapy daneho rozmeru
+        /// </summary>
+        /// <param name="dimension">Index rozmeru jehoz velikost zjistujeme</param>
+        /// <returns>Pocet prvku mapy daneho rozmeru</returns>
+        public int GetLength(int dimension)
+        {
+            return _mapArray.GetLength(dimension);
         }
     }
 }

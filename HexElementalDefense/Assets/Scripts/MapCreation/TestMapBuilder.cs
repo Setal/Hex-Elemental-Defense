@@ -1,10 +1,6 @@
-﻿using Assets.MapObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Assets.Scripts.MapObjects;
 
-namespace Assets.MapCreation
+namespace Assets.Scripts.MapCreation
 {
     /// <summary>
     /// Builder k vytvoreni testovaci mapy
