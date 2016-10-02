@@ -5,6 +5,6 @@
     /// </summary>
     class PathTile : TileBase
     {
-        // Use this for initialization
+      
     }
 }

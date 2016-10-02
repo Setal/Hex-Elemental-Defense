@@ -1,10 +1,12 @@
-﻿using Assets.Scripts.MapObjects;
+﻿using System;
+using Assets.Scripts.MapObjects;
 
 namespace Assets.Scripts.MapCreation
 {
     /// <summary>
     /// Builder k vytvoreni testovaci mapy
     /// </summary>
+    [Serializable]
     class TestMapBuilder : IMapBuilder
     {
         private const int mapSizeX = 10;
