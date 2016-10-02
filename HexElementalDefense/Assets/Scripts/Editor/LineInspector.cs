@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using Assets.Scripts.Math;
+using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.Editor
