@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2015
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexElementalDefense.CSharp", "HexElementalDefense.CSharp.csproj", "{D1F9D7F6-95A8-D1FB-0F25-ADBE5DD2D725}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexElementalDefense.CSharp.Editor", "HexElementalDefense.CSharp.Editor.csproj", "{2DC76690-E5B0-B28A-E6D7-6CA045784862}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{D1F9D7F6-95A8-D1FB-0F25-ADBE5DD2D725}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1F9D7F6-95A8-D1FB-0F25-ADBE5DD2D725}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1F9D7F6-95A8-D1FB-0F25-ADBE5DD2D725}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DC76690-E5B0-B28A-E6D7-6CA045784862}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DC76690-E5B0-B28A-E6D7-6CA045784862}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DC76690-E5B0-B28A-E6D7-6CA045784862}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DC76690-E5B0-B28A-E6D7-6CA045784862}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
