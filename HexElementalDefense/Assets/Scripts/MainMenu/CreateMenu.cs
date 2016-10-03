@@ -15,30 +15,33 @@ namespace Assets.Scripts.MainMenu
 
 
         // Tohle by mohl predelat nekdo, kdo vi jak na to, aby to bylo ciste.
-        private readonly CharacterObjectGenerator _charObjGen = new CharacterObjectGenerator();
+        private Text3DGenerator _text3DGenerator;
 
         // Use this for initialization
         void Start ()
         {
-            _title = CreateText("Hex Elemental Defense - Development - v0.0.1");
+            // Nevim jak jinak nez pres jinej objekt.
+            _text3DGenerator = GameObject.Find("TextCreator").GetComponent<Text3DGenerator>();
+            
+            _title = _text3DGenerator.CreateText("Hex Elemental Defense - Development - v0.0.1");
             _title.transform.position = new Vector3(0, 3, 0);
 
-            _continue = CreateText("Continue");
+            _continue = _text3DGenerator.CreateText("Continue");
             _continue.transform.position = new Vector3(0, 2, 0);
 
-            _newGame = CreateText("New game");
+            _newGame = _text3DGenerator.CreateText("New game");
             _newGame.transform.position = new Vector3(0, 1, 0);
 
-            _tutorial = CreateText("Tutorial");
+            _tutorial = _text3DGenerator.CreateText("Tutorial");
             _tutorial.transform.position = new Vector3(0, 0, 0);
             
-            _settings = CreateText("Settings");
+            _settings = _text3DGenerator.CreateText("Settings");
             _settings.transform.position = new Vector3(0, -1, 0);
 
-            _achievement = CreateText("Achievements");
+            _achievement = _text3DGenerator.CreateText("Achievements");
             _achievement.transform.position = new Vector3(0, -2, 0);
 
-            _exitGame = CreateText("Exit game");
+            _exitGame = _text3DGenerator.CreateText("Exit game");
             _exitGame.transform.position = new Vector3(0, -3, 0);
 
         }
@@ -48,38 +51,6 @@ namespace Assets.Scripts.MainMenu
         {
 	
         }
-
-
-
-
-
-
-        /// <summary>
-        /// Vytvori GameObject text obsahujici GameObjekty pismen.
-        /// </summary>
-        /// <param name="text">Text na vytvoreni.</param>
-        /// <param name="offset">Mezera mezi pismeny.</param>
-        /// <returns>Null pokud nebyly nalezeny prefaby znaku, jinak objekt.</returns>
-        private GameObject CreateText(string text, float offset=1.2f)
-        {
-            GameObject result = new GameObject(text);
-            result.transform.position = new Vector3(0,0,0);
-
-
-            for (int i = 0; i < text.Length; i++)
-            {
-                // Nacte prefab. Definovano v tride CharacterObjectGenerator.
-                GameObject prefab = _charObjGen.GetCharacterPrefab(text[i]);
-                if (!prefab)
-                {
-                    Debug.Log("Prefab cannot be load");
-                    return null;
-                }
-                GameObject go = Instantiate(prefab);
-                go.transform.position = new Vector3(i*offset,0,0);
-                go.transform.parent = result.transform;               
-            }
-            return result;
-        }
+        
     }
 }
