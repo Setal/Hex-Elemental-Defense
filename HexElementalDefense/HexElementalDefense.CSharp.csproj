@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.4.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -67,14 +69,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\CustomEditors\MapBuilderSelectionEditor.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Elements\ElementBase.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Towers\TowerBase.cs" />
     <Compile Include="Assets\Scripts\MainMenu\CreateMenu.cs" />
     <Compile Include="Assets\Scripts\MainMenu\LightRotator.cs" />
     <Compile Include="Assets\Scripts\MapCreation\IMapBuilder.cs" />
     <Compile Include="Assets\Scripts\MapCreation\TestMapBuilder.cs" />
-    <Compile Include="Assets\Scripts\MapObjects\EmptyTile.cs" />
-    <Compile Include="Assets\Scripts\MapObjects\Map.cs" />
-    <Compile Include="Assets\Scripts\MapObjects\PathTile.cs" />
-    <Compile Include="Assets\Scripts\MapObjects\TileBase.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\MapParts\EmptyTile.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\MapParts\Map.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\MapParts\PathTile.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\MapParts\TileBase.cs" />
     <Compile Include="Assets\Scripts\Math\Bezier.cs" />
     <Compile Include="Assets\Scripts\Math\BezierCurve.cs" />
     <Compile Include="Assets\Scripts\Math\BezierSpline.cs" />
@@ -84,5 +88,6 @@
     <Compile Include="Assets\Scripts\TestCameraScript.cs" />
     <Compile Include="Assets\Scripts\Text3D.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
