@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngineInternal;
@@ -6,107 +7,81 @@ using Object = UnityEngine.Object;
 
 namespace Assets.Scripts
 {
+    /// <summary>
+    /// Reprezentuje objekt 3D textu
+    /// </summary>
     public class Text3D
     {
-
         private GameObject _text3D;
 
-        private string _text = "";
-        private Material _material;
-        private Vector3 _position = new Vector3(0, 0, 0);
+        private readonly string _text;
+        private readonly Material _material;
+        private readonly Vector3 _position;
         private readonly GameObject _alphabet;
 
+        //Mapa pro preklad specialnich znaku na jmeno prefabu
+        private static readonly Dictionary<char, string> SpecialCharactersMap = new Dictionary<char, string>()
+                                                           {
+                                                               {' ',"charSpace"},
+                                                               {'.',"charDot"},
+                                                               {'-',"charDash"},
+                                                               {'!',"charExclamationMark"},
+                                                               {'?',"charQuestionMark"}
+                                                           };
 
         /// <summary>
-        /// Konstruktor 3D textu. Vyhodi vyjimku pokud nenacte prefaby.
+        /// Vytvari 3D text.
         /// </summary>
         /// <param name="text">Text, ktery se ma vytvorit.</param>
         /// <param name="position">Pozice kam se ma text umistit.</param>
         /// <param name="offset">Rozestup mezi pismeny.</param>
         /// <param name="parent">Objekt, kteremu se ma vysledny text podradit.</param>
         /// <param name="material">Material, kterym se ma text obarvit.</param>
-        public Text3D(string text, Vector3 position, float offset = .8f, GameObject parent = null,
-            Material material = null)
+        /// <exception cref="InvalidOperationException">Vraci vyjimku pokud nelze nacist prefaby.</exception>
+        public Text3D(string text, Vector3 position, float offset = .8f, GameObject parent = null, Material material = null)
         {
-            _alphabet = (GameObject) Resources.Load("Alphabet");
-            if (!_alphabet)
+            _alphabet = (GameObject)Resources.Load("Alphabet");
+
+            if (_alphabet != null)
             {
-                Debug.Log("No alphabet prefab found.");
-                throw new Exception("No alphabet prefab found.");
+                var errorMessage = "No alphabet prefab found.";
+                Debug.Log(errorMessage);
+                throw new InvalidOperationException(errorMessage);
             }
-            ChangeText(text, position, offset, material);
-            if (parent)
+
+            _text = text;
+            _position = position;
+            _material = material;
+
+            CreateText(offset);
+
+            if (parent != null)
+            {
                 _text3D.transform.parent = parent.transform;
+            }
         }
-
-
-        /// <summary>
-        /// Vraci prefab pro zadany znak.
-        /// </summary>
-        /// <param name="c">Znak od ktereho chceme prefab.</param>
-        /// <returns>Prefab zadaneho znaku pokud je definovan a existuje. Null v ostatnich pripadech.</returns>
-        private GameObject GetCharacterPrefab(char c)
-        {
-            GameObject tmp;
-            if (char.IsLower(c))
-                tmp = _alphabet.transform.Find("lower" + c).gameObject;
-            else if (char.IsUpper(c))
-                tmp = _alphabet.transform.Find("upper" + c).gameObject;
-            else if (char.IsNumber(c))
-                tmp = _alphabet.transform.Find("char" + c).gameObject;
-            else
-                switch (c)
-                {
-                    case '.':
-                        tmp = _alphabet.transform.Find("charDot").gameObject;
-                        break;
-                    case ',':
-                        tmp = _alphabet.transform.Find("charComma").gameObject;
-                        break;
-                    case '-':
-                        tmp = _alphabet.transform.Find("charDash").gameObject;
-                        break;
-                    case '!':
-                        tmp = _alphabet.transform.Find("charExclamationMark").gameObject;
-                        break;
-                    case '?':
-                        tmp = _alphabet.transform.Find("charQuestionMark").gameObject;
-                        break;
-                    case ' ':
-                        tmp = _alphabet.transform.Find("charSpace").gameObject;
-                        break;
-                    default:
-                        Debug.Log("Character prefab not found for character: '" + c + "'");
-                        throw new Exception("Character prefab not found for character: '" + c + "'");
-                }
-            return tmp;
-        }
-
 
 
         /// <summary>
         /// Vytvori GameObject textu obsahujici GameObjekty pismen.
         /// </summary>
-        /// <param name="text">Text na vytvoreni.</param>
-        /// <param name="position">Pozice textu.</param>
-        /// <param name="material">Material textu. Default = podle prefabu.</param>
-        /// <param name="offset">Mezera mezi pismeny. Default = 1f</param>
-        /// <returns>Objekt sdruzujici vsechny znaky. Pokud nebyly nalezeny prefaby znaku, pak null.</returns>
-        public void ChangeText(string text, Vector3 position, float offset = .8f, Material material = null)
+        /// <param name="offset">Mezera mezi pismeny. Default = 0.8f</param>
+        private void CreateText(float offset = 0.8f)
         {
-            _text3D = new GameObject(text);
-            _text3D.transform.position = _position = position;
+            _text3D = new GameObject(_text);
+            _text3D.transform.position = _position;
 
-            for (int i = 0; i < text.Length; i++)
+            for (int i = 0; i < _text.Length; i++)
             {
-                GameObject tmp = Object.Instantiate(GetCharacterPrefab(text[i]));
-                tmp.transform.position = new Vector3(i*offset, 0, 0) + position;
+                GameObject tmp = Object.Instantiate(GetCharacterPrefab(_text[i]));
+                tmp.transform.position = new Vector3(i*offset, 0, 0) + _position;
                 tmp.transform.parent = _text3D.transform;
-                if (material)
-                    tmp.GetComponent<Renderer>().material = _material = material;
+
+                if (_material != null)
+                {
+                    tmp.GetComponent<Renderer>().material = _material;
+                }
             }
-            _text = text;
-            return;
         }
 
         /// <summary>
@@ -145,10 +120,38 @@ namespace Assets.Scripts
             return _text3D;
         }
 
-        ////I hope i wont need that.
-        //public GameObject this[int i]
-        //{
-        //    get { return _text3D.transform.GetChild(i).gameObject; }
-        //}
+        /// <summary>
+        /// Vraci prefab pro zadany znak.
+        /// </summary>
+        /// <param name="input">Znak od ktereho chceme prefab.</param>
+        /// <returns>Prefab zadaneho znaku pokud je definovan a existuje. Null v ostatnich pripadech.</returns>
+        private GameObject GetCharacterPrefab(char input)
+        {
+            return _alphabet.transform.Find(GetGameObjectRepresentationOfChar(input)).gameObject;
+        }
+
+        private static string GetGameObjectRepresentationOfChar(char input)
+        {
+            if (char.IsLower(input))
+            {
+                return "lower" + input;
+            }
+            else if (char.IsUpper(input))
+            {
+                return "upper" + input;
+            }
+            else if (char.IsNumber(input))
+            {
+                return "char" + input;
+            }
+            else if (SpecialCharactersMap.ContainsKey(input))
+            {
+                return SpecialCharactersMap[input];
+            }
+
+            var errorMessage = string.Format("Character prefab not found for character: '{0}'", input);
+            Debug.Log(errorMessage);
+            throw new InvalidOperationException(errorMessage);
+        }
     }
 }
