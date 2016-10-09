@@ -1,2 +1,2 @@
 # Hex-Elemental-Defense
-Example game project created in Unity
+Test game project created in Unity

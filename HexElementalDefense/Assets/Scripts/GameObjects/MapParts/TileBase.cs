@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Assets.Scripts.MapObjects
+﻿namespace Assets.Scripts.GameObjects.MapParts
 {
     /// <summary>
     /// Reprezentuje bazovy prvek pole

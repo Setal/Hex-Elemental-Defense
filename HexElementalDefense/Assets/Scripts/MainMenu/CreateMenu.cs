@@ -5,52 +5,38 @@ namespace Assets.Scripts.MainMenu
 {
     public class CreateMenu : MonoBehaviour
     {
-        private GameObject _title;
-        private GameObject _continue;
-        private GameObject _newGame;
-        private GameObject _tutorial;
-        private GameObject _settings;
-        private GameObject _achievement;
-        private GameObject _exitGame;
+        private Text3D _title;
+        private Text3D _continue;
+        private Text3D _newGame;
+        private Text3D _tutorial;
+        private Text3D _settings;
+        private Text3D _achievement;
+        private Text3D _exitGame;
 
+        private Material _red;
+        private Material _green;
+        private Material _blue;
+        private Material _cyan;
+        private Material _magenta;
+        private Material _yellow;
 
-        // Tohle by mohl predelat nekdo, kdo vi jak na to, aby to bylo ciste.
-        private Text3DGenerator _text3DGenerator;
-
-        // Use this for initialization
-        void Start ()
+        public void Start()
         {
-            // Nevim jak jinak nez pres jinej objekt.
-            _text3DGenerator = GameObject.Find("TextCreator").GetComponent<Text3DGenerator>();
-            
-            _title = _text3DGenerator.CreateText("Hex Elemental Defense - Development - v0.0.1");
-            _title.transform.position = new Vector3(0, 3, 0);
+            _red = Resources.Load<Material>("Red");
+            _green = Resources.Load<Material>("Green");
+            _blue = Resources.Load<Material>("Blue");
+            _cyan = Resources.Load<Material>("Cyan");
+            _magenta = Resources.Load<Material>("Magenta");
+            _yellow = Resources.Load<Material>("Yellow");
 
-            _continue = _text3DGenerator.CreateText("Continue");
-            _continue.transform.position = new Vector3(0, 2, 0);
-
-            _newGame = _text3DGenerator.CreateText("New game");
-            _newGame.transform.position = new Vector3(0, 1, 0);
-
-            _tutorial = _text3DGenerator.CreateText("Tutorial");
-            _tutorial.transform.position = new Vector3(0, 0, 0);
-            
-            _settings = _text3DGenerator.CreateText("Settings");
-            _settings.transform.position = new Vector3(0, -1, 0);
-
-            _achievement = _text3DGenerator.CreateText("Achievements");
-            _achievement.transform.position = new Vector3(0, -2, 0);
-
-            _exitGame = _text3DGenerator.CreateText("Exit game");
-            _exitGame.transform.position = new Vector3(0, -3, 0);
-
+            _title = new Text3D("Hex Elemental Defense - Development - v0.0.1", new Vector3(0, 3, 0),
+                parent: this.gameObject);
+            _continue = new Text3D("Continue", new Vector3(0, 2, 0), parent: this.gameObject, material: _red);
+            _newGame = new Text3D("New game", new Vector3(0, 1, 0), parent: this.gameObject, material: _green);
+            _tutorial = new Text3D("Tutorial", new Vector3(0, 0, 0), parent: this.gameObject, material: _blue);
+            _settings = new Text3D("Settings", new Vector3(0, -1, 0), parent: this.gameObject, material: _cyan);
+            _achievement = new Text3D("Achievements", new Vector3(0, -2, 0), parent: this.gameObject, material: _magenta);
+            _exitGame = new Text3D("Exit game", new Vector3(0, -3, 0), parent: this.gameObject, material: _yellow);
         }
-	
-        // Update is called once per frame
-        void Update ()
-        {
-	
-        }
-        
     }
 }
