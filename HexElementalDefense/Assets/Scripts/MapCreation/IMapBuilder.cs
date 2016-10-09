@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.MapObjects;
+﻿using System.Collections.Generic;
+using Assets.Scripts.MapObjects;
 
 namespace Assets.Scripts.MapCreation
 {
@@ -11,6 +12,6 @@ namespace Assets.Scripts.MapCreation
         /// Vytvoreni pole hernich poli
         /// </summary>
         /// <returns>Vraci nainicializovane herni pole</returns>
-        TileBase[,] CreateMap();
+        TileBase[,] CreateMap(out List<Path> paths);
     }
 }

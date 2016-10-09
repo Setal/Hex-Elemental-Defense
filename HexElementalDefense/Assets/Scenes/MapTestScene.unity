@@ -262,7 +262,7 @@ GameObject:
   - 4: {fileID: 2102513713}
   - 114: {fileID: 2102513712}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -279,6 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b399f7d7f7d56194ba40308112b33a1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MapAsParent: {fileID: 2102513711}
   _mapBuilderIndex: 0
 --- !u!4 &2102513713
 Transform:
@@ -287,7 +288,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2102513711}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.66743207, y: -0.2416563, z: -2.0844622}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []

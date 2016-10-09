@@ -6,5 +6,6 @@ namespace Assets.Scripts.MapObjects
     /// Reprezentuje bazovy prvek pole
     /// </summary>
     public abstract class TileBase {
+        public Vector2 Position { get; set; }
     }
 }
