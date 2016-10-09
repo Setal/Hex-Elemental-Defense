@@ -42,7 +42,7 @@ namespace Assets.Scripts
         {
             _alphabet = (GameObject)Resources.Load("Alphabet");
 
-            if (_alphabet != null)
+            if (_alphabet == null)
             {
                 var errorMessage = "No alphabet prefab found.";
                 Debug.Log(errorMessage);
@@ -65,8 +65,8 @@ namespace Assets.Scripts
         /// <summary>
         /// Vytvori GameObject textu obsahujici GameObjekty pismen.
         /// </summary>
-        /// <param name="offset">Mezera mezi pismeny. Default = 0.8f</param>
-        private void CreateText(float offset = 0.8f)
+        /// <param name="offset">Mezera mezi pismeny.</param>
+        private void CreateText(float offset)
         {
             _text3D = new GameObject(_text);
             _text3D.transform.position = _position;
@@ -74,7 +74,7 @@ namespace Assets.Scripts
             for (int i = 0; i < _text.Length; i++)
             {
                 GameObject tmp = Object.Instantiate(GetCharacterPrefab(_text[i]));
-                tmp.transform.position = new Vector3(i*offset, 0, 0) + _position;
+                tmp.transform.position = new Vector3(i * offset, 0, 0) + _position;
                 tmp.transform.parent = _text3D.transform;
 
                 if (_material != null)
