@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.MapObjects
+﻿namespace Assets.Scripts.GameObjects.MapParts
 {
     /// <summary>
     /// Reprezentuje pole cesty

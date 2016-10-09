@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
+using Assets.Scripts.GameObjects.MapParts;
 using Assets.Scripts.MapCreation;
-using Assets.Scripts.MapObjects;
 using Assets.Scripts.Support;
 using UnityEditor;
 

@@ -3,7 +3,7 @@ using Assets.Scripts.MapCreation;
 using Assets.Scripts.Support;
 using UnityEngine;
 
-namespace Assets.Scripts.MapObjects
+namespace Assets.Scripts.GameObjects.MapParts
 {
     /// <summary>
     /// Reprezentuje herni mapu

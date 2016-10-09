@@ -1,5 +1,5 @@
 ﻿using System;
-using Assets.Scripts.MapObjects;
+using Assets.Scripts.GameObjects.MapParts;
 
 namespace Assets.Scripts.MapCreation
 {

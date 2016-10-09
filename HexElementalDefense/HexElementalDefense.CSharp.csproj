@@ -69,7 +69,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\CustomEditors\MapBuilderSelectionEditor.cs" />
+    <Compile Include="Assets\GameConstants.cs" />
     <Compile Include="Assets\Scripts\GameObjects\Elements\ElementBase.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Towers\ChainTower.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Towers\CommonTower.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Towers\SplashTower.cs" />
     <Compile Include="Assets\Scripts\GameObjects\Towers\TowerBase.cs" />
     <Compile Include="Assets\Scripts\MainMenu\CreateMenu.cs" />
     <Compile Include="Assets\Scripts\MainMenu\LightRotator.cs" />
