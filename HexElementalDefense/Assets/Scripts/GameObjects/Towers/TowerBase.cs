@@ -17,6 +17,9 @@ namespace Assets.Scripts.GameObjects.Towers
             AttackSpeed = attackSpeed;
             _level = level;
 
+            Range += (GameConstants.TowerConstants.RangePerLevelGain * (level-1));
+            Damage += (GameConstants.TowerConstants.DamagePerLevelGain * (level - 1));
+
             _cooldownCounter = new Timer(GameConstants.TowerConstants.AttackSpeed);
             _cooldownCounter.Elapsed += OnCoolDownEnd;
         }

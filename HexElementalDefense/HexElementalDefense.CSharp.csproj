@@ -70,6 +70,8 @@
   <ItemGroup>
     <Compile Include="Assets\CustomEditors\MapBuilderSelectionEditor.cs" />
     <Compile Include="Assets\GameConstants.cs" />
+    <Compile Include="Assets\Scripts\Providers\ElementProvider.cs" />
+    <Compile Include="Assets\Scripts\Providers\TowerProvider.cs" />
     <Compile Include="Assets\Scripts\GameObjects\Elements\DarknessElement.cs" />
     <Compile Include="Assets\Scripts\GameObjects\Elements\EarthElement.cs" />
     <Compile Include="Assets\Scripts\GameObjects\Elements\AirElement.cs" />
@@ -100,6 +102,8 @@
     <Compile Include="Assets\Scripts\TestCameraScript.cs" />
     <Compile Include="Assets\Scripts\Text3D.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Assets\Scripts\GameObjects\Missiles\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

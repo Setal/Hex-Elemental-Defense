@@ -16,6 +16,8 @@ namespace Assets.Scripts.GameObjects.Elements
         {
             _level = level;
             EffectPower = effectPower;
+
+	    EffectPower += (GameConstants.ElementConstants.PerLevelPowerEffectGain * (level - 1));
         }
 
         /// <summary>
@@ -33,9 +35,13 @@ namespace Assets.Scripts.GameObjects.Elements
         /// </summary>
         public double EffectPower { get; private set; }
 
+        /// <summary>
+        /// Provede vylepseni elementu na dalsi uroven
+        /// </summary>
         public void Upgrade()
         {
-            throw new NotImplementedException();
+            _level++;
+            EffectPower += GameConstants.ElementConstants.PerLevelPowerEffectGain;
         }
 
     }
