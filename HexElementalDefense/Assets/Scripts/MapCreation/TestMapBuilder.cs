@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using Assets.Scripts.GameObjects.MapParts;
+using Assets.Scripts.MapObjects;
+using UnityEngine;
 
 namespace Assets.Scripts.MapCreation
 {
@@ -16,7 +19,7 @@ namespace Assets.Scripts.MapCreation
         /// Vytvoreni pole hernich poli
         /// </summary>
         /// <returns>Vraci nainicializovane herni pole</returns>
-        public TileBase[,] CreateMap()
+        public TileBase[,] CreateMap(out List<Path> paths)
         {
             var map = new TileBase[mapSizeX, mapSizeY];
 
@@ -31,16 +34,32 @@ namespace Assets.Scripts.MapCreation
 
             //Vygeneruj cestu
 
-            map[1, 0] = new PathTile();
-            map[3, 0] = new PathTile();
-            map[5, 0] = new PathTile();
-            map[6, 1] = new PathTile();
-            map[5, 1] = new PathTile();
-            map[4, 2] = new PathTile();
-            map[3, 2] = new PathTile();
-            map[4, 3] = new PathTile();
-            map[6, 3] = new PathTile();
-            map[8, 3] = new PathTile();
+            paths = new List<Path>();
+            var path = new Path
+            {
+                Points = new List<Vector2>
+                {
+                    new Vector2(1, 0),
+                    new Vector2(3, 0),
+                    new Vector2(5, 0),
+                    new Vector2(6, 1),
+                    new Vector2(5, 1),
+                    new Vector2(4, 2),
+                    new Vector2(3, 2),
+                    new Vector2(4, 3),
+                    new Vector2(6, 3),
+                    new Vector2(8, 3)
+                }
+            };
+            paths.Add(path);
+
+            foreach (var path_ in paths)
+            {
+                foreach (var point in path_.Points)
+                {
+                    map[(int)point.x, (int)point.y] = new PathTile();
+                }
+            }
 
             return map;
         }

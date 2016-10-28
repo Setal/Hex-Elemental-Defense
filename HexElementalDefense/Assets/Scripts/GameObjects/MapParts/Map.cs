@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using Assets.Scripts.MapCreation;
+using Assets.Scripts.MapObjects;
+using Assets.Scripts.Math;
 using Assets.Scripts.Support;
 using UnityEngine;
 
@@ -11,6 +14,9 @@ namespace Assets.Scripts.GameObjects.MapParts
     [Serializable]
     public class Map : MonoBehaviour
     {
+        public GameObject MapAsParent;
+        public List<Path> Paths;
+
         private TileBase[,] _mapArray;
         private GameObject _hex;
         private GameObject _hexPath;
@@ -35,6 +41,16 @@ namespace Assets.Scripts.GameObjects.MapParts
         public TileBase this[int x, int y]
         {
             get { return _mapArray[x, y]; }
+        }
+
+        /// <summary>
+        /// Vraci pole na zadanych souradnicich
+        /// </summary>
+        /// <param name="v">Vektor souradnic</param>
+        /// <returns>Pole na zadanych souradnicich</returns>
+        public TileBase this[Vector2 v]
+        {
+            get { return _mapArray[(int)v.x, (int)v.y]; }
         }
 
         /// <summary>
@@ -71,23 +87,50 @@ namespace Assets.Scripts.GameObjects.MapParts
             _hex = (GameObject)Resources.Load("Hex");
             _hexPath = (GameObject)Resources.Load("HexPath");
 
-            _mapArray = MapBuilder.CreateMap();
+            _mapArray = MapBuilder.CreateMap(out Paths);
 
             for (int i0 = 0; i0 < GetLength(0); i0++)
                 for (int i1 = 0; i1 < GetLength(1); i1++)
                 {
                     GameObject localHex = _hex;
-                    var zDiff = 1.5f;
-                    var xDiff = 0.866025f / 2f;
+                    const float zDiff = 1.5f;
+                    const float xDiff = 0.866025f / 2f;
+
+                    var x = i0 * xDiff;
+                    var y = 0;
+                    var z = i1 * zDiff + ((i0 % 2 == 0) ? 0f : zDiff * 0.5f);
+
                     var tile = this[i0, i1];
+                    tile.Position = new Vector3(x, y, z);
 
                     if (tile is PathTile)
                     {
                         localHex = _hexPath;
                     }
 
-                    Instantiate(localHex, new Vector3(i0 * xDiff, 0, i1 * zDiff + ((i0 % 2 == 0) ? 0f : zDiff * 0.5f)), Quaternion.identity);
+                    GameObject instance = (GameObject)Instantiate(localHex, transform.position + new Vector3(x, y, z), Quaternion.identity);
+                    instance.transform.parent = MapAsParent.transform;
                 }
+
+            //TODO vykresli cestu
+
+            /*for (int i = 0; i < Paths[0].Points.Count - 1; i++)
+            {
+                Vector2 point = Paths[0].Points[i];
+                Vector2 nextpoint = Paths[0].Points[i + 1];
+                Vector2 vector = (Paths[0].Points[i + 1] - Paths[0].Points[i]) / 2f;
+                TileBase tile = this[point];
+                TileBase nexttile = this[nextpoint];
+                GameObject instance = (GameObject)Instantiate(new GameObject(), new Vector3(tile.Position.x, 0, tile.Position.y), Quaternion.identity);
+                BezierSpline spline = instance.AddComponent(typeof(BezierSpline)) as BezierSpline;
+                spline.Reset();
+                spline.SetControlPoint(0, new Vector3(0, 1, 0));
+                spline.SetControlPoint(1, new Vector3(vector.x, 1, vector.y));
+                spline.SetControlPoint(2, new Vector3(nexttile.Position.x - tile.Position.x, 1, nexttile.Position.y - tile.Position.y));
+                spline.SetControlPoint(3, new Vector3(nexttile.Position.x - tile.Position.x, 1, nexttile.Position.y - tile.Position.y));
+
+
+            }*/
         }
 
         // Update is called once per frame
