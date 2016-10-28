@@ -1,4 +1,6 @@
-﻿namespace Assets
+﻿using Assets.Scripts.GameObjects.Elements;
+
+namespace Assets
 {
     /// <summary>
     /// Zdruzuje vsechny herni konstanty a vychozi hodnoty
@@ -38,14 +40,50 @@
             public const int RangePerLevelGain = 1;
 
             /// <summary>
-            /// Porizovaci cena Common veze
+            /// Porizovaci cena CommonTower
             /// </summary>
             public const int CommonTowerPurchasePrice = 10;
 
             /// <summary>
-            /// Vylepsovaci cena Common veze
+            /// Vylepsovaci cena CommonTower
             /// </summary>
             public const int CommonTowerUpgradePrice = 1;
+
+            /// <summary>
+            /// Porizovaci cena ChainTower
+            /// </summary>
+            public const int ChainTowerPurchasePrice = 22;
+
+            /// <summary>
+            /// Vylepsovaci cena ChainTower
+            /// </summary>
+            public const int ChainTowerUpgradePrice = 2;
+
+            /// <summary>
+            /// Porizovaci cena SplashTower
+            /// </summary>
+            public const int SplashTowerPurchasePrice = 33;
+
+            /// <summary>
+            /// Vylepsovaci cena SplashTower
+            /// </summary>
+            public const int SplashTowerUpgradePrice = 3;
+        }
+
+        /// <summary>
+        /// Zdruzuje vsechny herni konstanty a vychozi hodnoty elementu
+        /// </summary>
+        public static class ElementConstants
+        {
+            /// <summary>
+            /// Vychozi multiplikator efektu elementu
+            /// </summary>
+            public const double PowerEffect = 1;
+
+            /// <summary>
+            /// Prirustek sili schopnosti za kazdou uroven
+            /// </summary>
+            public const double PerLevelPowerEffectGain = 1;
         }
     }
 }
