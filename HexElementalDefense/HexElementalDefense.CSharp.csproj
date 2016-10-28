@@ -77,7 +77,15 @@
   <ItemGroup>
     <Compile Include="Assets\CustomEditors\MapBuilderSelectionEditor.cs" />
     <Compile Include="Assets\GameConstants.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Elements\AirElement.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Elements\DarknessElement.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Elements\EarthElement.cs" />
     <Compile Include="Assets\Scripts\GameObjects\Elements\ElementBase.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Elements\ElementEffect.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Elements\FireElement.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Elements\LightElement.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Elements\PureEnergyElement.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Elements\WaterElement.cs" />
     <Compile Include="Assets\Scripts\GameObjects\MapParts\EmptyTile.cs" />
     <Compile Include="Assets\Scripts\GameObjects\MapParts\Map.cs" />
     <Compile Include="Assets\Scripts\GameObjects\MapParts\PathTile.cs" />
@@ -97,6 +105,8 @@
     <Compile Include="Assets\Scripts\Math\BezierCurve.cs" />
     <Compile Include="Assets\Scripts\Math\BezierSpline.cs" />
     <Compile Include="Assets\Scripts\Math\Line.cs" />
+    <Compile Include="Assets\Scripts\Providers\ElementProvider.cs" />
+    <Compile Include="Assets\Scripts\Providers\TowerProvider.cs" />
     <Compile Include="Assets\Scripts\SplineWalker.cs" />
     <Compile Include="Assets\Scripts\Support\Constants.cs" />
     <Compile Include="Assets\Scripts\TestCameraScript.cs" />
