@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Assets.Scripts.GameObjects.MapParts;
 using Assets.Scripts.MapObjects;
 using UnityEngine;
 

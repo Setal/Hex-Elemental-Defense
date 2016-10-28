@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Assets.Scripts.MapCreation;
+using Assets.Scripts.MapObjects;
 using Assets.Scripts.Math;
 using Assets.Scripts.Support;
 using UnityEngine;
@@ -14,12 +15,11 @@ namespace Assets.Scripts.GameObjects.MapParts
     public class Map : MonoBehaviour
     {
         public GameObject MapAsParent;
+        public List<Path> Paths;
 
         private TileBase[,] _mapArray;
         private GameObject _hex;
         private GameObject _hexPath;
-
-        public List<Path> Paths { get; set; }
 
         /// <summary>
         /// Index do seznamu mapBuilderu <see cref="Constants.AviableMapBuilders"/>
@@ -87,8 +87,7 @@ namespace Assets.Scripts.GameObjects.MapParts
             _hex = (GameObject)Resources.Load("Hex");
             _hexPath = (GameObject)Resources.Load("HexPath");
 
-            List<Path> paths;
-            _mapArray = MapBuilder.CreateMap(out paths);
+            _mapArray = MapBuilder.CreateMap(out Paths);
 
             for (int i0 = 0; i0 < GetLength(0); i0++)
                 for (int i1 = 0; i1 < GetLength(1); i1++)
@@ -98,27 +97,28 @@ namespace Assets.Scripts.GameObjects.MapParts
                     const float xDiff = 0.866025f / 2f;
 
                     var x = i0 * xDiff;
+                    var y = 0;
                     var z = i1 * zDiff + ((i0 % 2 == 0) ? 0f : zDiff * 0.5f);
 
                     var tile = this[i0, i1];
-                    tile.Position = new Vector2(x, z);
+                    tile.Position = new Vector3(x, y, z);
 
                     if (tile is PathTile)
                     {
                         localHex = _hexPath;
                     }
 
-                    GameObject instance = (GameObject)Instantiate(localHex, new Vector3(x, 0, z), Quaternion.identity);
+                    GameObject instance = (GameObject)Instantiate(localHex, transform.position + new Vector3(x, y, z), Quaternion.identity);
                     instance.transform.parent = MapAsParent.transform;
                 }
 
             //TODO vykresli cestu
 
-            for (int i = 0; i < paths[0].Points.Count - 1; i++)
+            /*for (int i = 0; i < Paths[0].Points.Count - 1; i++)
             {
-                Vector2 point = paths[0].Points[i];
-                Vector2 nextpoint = paths[0].Points[i + 1];
-                Vector2 vector = (paths[0].Points[i + 1] - paths[0].Points[i]) / 2f;
+                Vector2 point = Paths[0].Points[i];
+                Vector2 nextpoint = Paths[0].Points[i + 1];
+                Vector2 vector = (Paths[0].Points[i + 1] - Paths[0].Points[i]) / 2f;
                 TileBase tile = this[point];
                 TileBase nexttile = this[nextpoint];
                 GameObject instance = (GameObject)Instantiate(new GameObject(), new Vector3(tile.Position.x, 0, tile.Position.y), Quaternion.identity);
@@ -130,7 +130,7 @@ namespace Assets.Scripts.GameObjects.MapParts
                 spline.SetControlPoint(3, new Vector3(nexttile.Position.x - tile.Position.x, 1, nexttile.Position.y - tile.Position.y));
 
 
-            }
+            }*/
         }
 
         // Update is called once per frame

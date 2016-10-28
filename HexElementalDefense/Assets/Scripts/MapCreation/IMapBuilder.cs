@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Assets.Scripts.GameObjects.MapParts;
 using Assets.Scripts.MapObjects;
 
 namespace Assets.Scripts.MapCreation

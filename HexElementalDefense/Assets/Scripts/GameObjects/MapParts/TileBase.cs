@@ -1,9 +1,11 @@
-﻿namespace Assets.Scripts.GameObjects.MapParts
+﻿using UnityEngine;
+
+namespace Assets.Scripts.GameObjects.MapParts
 {
     /// <summary>
     /// Reprezentuje bazovy prvek pole
     /// </summary>
     public abstract class TileBase {
-        public Vector2 Position { get; set; }
+        public Vector3 Position { get; set; }
     }
 }
